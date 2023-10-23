@@ -1,0 +1,31 @@
+version: "3.3"
+services:
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - Default=Host=db;Port=5432;Database=suriDb;Username=suriUser;Password=suri123
+    depends_on:
+      - db
+    ports:
+      - "80:80"
+
+  db:
+    image: postgres:latest
+    container_name: db
+    restart: always
+    environment:
+        POSTGRES_USER: suriUser
+        POSTGRES_PASSWORD: suri123
+        POSTGRES_DB: suriDb
+    ports:
+      - 5432:5432
+
+    volumes:
+      - postg-data:/var/lib/postgresql/data
+      - ./database/create_table.sql:/docker-entrypoint-initdb.d/create_tables.sql
+
+volumes:
+  postg-data:

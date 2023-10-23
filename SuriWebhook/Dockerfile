@@ -7,10 +7,10 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["SuriWebhook/SuriWebhook.csproj", "SuriWebhook/"]
-RUN dotnet restore "SuriWebhook/SuriWebhook.csproj"
+COPY ["SuriWebhook.csproj", "."]
+RUN dotnet restore "./SuriWebhook.csproj"
 COPY . .
-WORKDIR "/src/SuriWebhook"
+WORKDIR "/src/."
 RUN dotnet build "SuriWebhook.csproj" -c Release -o /app/build
 
 FROM build AS publish
