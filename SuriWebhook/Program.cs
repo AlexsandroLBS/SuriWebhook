@@ -54,13 +54,13 @@ app.MapPost("/webhook", async context => {
                     }}";
 
                     request.Content = new StringContent(jsonContent, System.Text.Encoding.UTF8, "application/json");
-
                     var res = await client.SendAsync(request);
                     res.EnsureSuccessStatusCode();
                     Console.WriteLine(await res.Content.ReadAsStringAsync());
 
-                    var returnContato = new HttpRequestMessage(HttpMethod.Get, $"{serverUrl}/contacts/{requestBody.payload.user.Id}/backtosuri/");
-                    var backToSuri = await client.SendAsync(request);
+                    var returnContato = new HttpRequestMessage(HttpMethod.Post, $"{serverUrl}/contacts/{requestBody.payload.user.Id}/backtosuri");
+                    returnContato.Headers.Authorization = new AuthenticationHeaderValue("Bearer", serverApiKey);
+                    var backToSuri =  await client.SendAsync(returnContato);
                     backToSuri.EnsureSuccessStatusCode();
                     Console.WriteLine(await backToSuri.Content.ReadAsStringAsync());
 
@@ -82,8 +82,10 @@ app.MapPost("/webhook", async context => {
                     var res = await client.SendAsync(request);
                     res.EnsureSuccessStatusCode();
                     Console.WriteLine(await res.Content.ReadAsStringAsync());
-                    var returnContato = new HttpRequestMessage(HttpMethod.Get, $"{serverUrl}/contacts/{requestBody.payload.user.Id}/backtosuri/");
-                    var backToSuri = await client.SendAsync(request);
+                    var returnContato = new HttpRequestMessage(HttpMethod.Post, $"{serverUrl}/contacts/{requestBody.payload.user.Id}/backtosuri");
+                    returnContato.Headers.Authorization = new AuthenticationHeaderValue("Bearer", serverApiKey);
+
+                    var backToSuri =  client.Send(returnContato);
                     backToSuri.EnsureSuccessStatusCode();
                     Console.WriteLine(await backToSuri.Content.ReadAsStringAsync());
                 }
@@ -105,8 +107,10 @@ app.MapPost("/webhook", async context => {
                 var res = await client.SendAsync(request);
                 res.EnsureSuccessStatusCode();
                 Console.WriteLine(await res.Content.ReadAsStringAsync());
-                var returnContato = new HttpRequestMessage(HttpMethod.Get, $"{serverUrl}/contacts/{requestBody.payload.user.Id}/backtosuri/");
-                var backToSuri = await client.SendAsync(request);
+                var returnContato = new HttpRequestMessage(HttpMethod.Post, $"{serverUrl}/contacts/{requestBody.payload.user.Id}/backtosuri");
+                returnContato.Headers.Authorization = new AuthenticationHeaderValue("Bearer", serverApiKey);
+
+                var backToSuri = client.Send(returnContato);
                 backToSuri.EnsureSuccessStatusCode();
                 Console.WriteLine(await backToSuri.Content.ReadAsStringAsync());
               }
