@@ -6,8 +6,8 @@ uma situação comum em empresas que utilizam a Suri em seus atendimentos.
 A aplicação foi deployada em uma [Máquina Virtual Azure](https://azure.microsoft.com/pt-br/products/virtual-machines/) e tem como objetivo principal, seguir o fluxo abaixo.
 
 
+![image](https://github.com/AlexsandroLBS/SuriWebhook/assets/89843505/c24dc075-5d95-4ff7-bc07-fe79fbc4086b)
 
-![image](https://github.com/AlexsandroLBS/SuriWebhook/assets/89843505/e3508340-6ec3-45b1-98bb-34023ce338a2)
 
 ## Testes
 Para finalidade de testes, foi adicionado apenas um dado ao banco, com CPF igual à 64315629090, valor este gerado aleatoriamente por um [Gerador de CPF](https://www.4devs.com.br/gerador_de_cpf).
